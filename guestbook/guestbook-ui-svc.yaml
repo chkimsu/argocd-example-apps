@@ -4,8 +4,10 @@ metadata:
   name: guestbook-ui
   namespace: sbchoi
 spec:
+  type: NodePort
   ports:
   - port: 80
     targetPort: 80
+    nodePort: 30080
   selector:
     app: guestbook-ui

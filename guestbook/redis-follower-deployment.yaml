@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-follower
+  namespace: sbchoi
+  labels:
+    app: redis
+    role: follower
+spec:
+  selector:
+    matchLabels:
+      app: redis
+      role: follower
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: follower
+    spec:
+      containers:
+        - name: redis
+          image: redis:6.2
+          command:
+            - redis-server
+            - "--replicaof"
+            - redis-leader
+            - "6379"
+          ports:
+            - containerPort: 6379
