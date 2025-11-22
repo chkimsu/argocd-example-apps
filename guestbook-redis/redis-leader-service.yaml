@@ -1,0 +1,16 @@
+# guestbook-redis/redis-leader-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-leader
+  labels:
+    app: redis
+    role: leader
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    app: redis
+    role: leader
+  type: ClusterIP

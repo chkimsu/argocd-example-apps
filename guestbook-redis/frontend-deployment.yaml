@@ -1,0 +1,30 @@
+# guestbook-redis/frontend-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: guestbook
+        tier: frontend
+    spec:
+      containers:
+        - name: php-redis-frontend
+          image: gcr.io/google-samples/gb-frontend:v5
+          # 이 이미지가 Redis를 사용하는 "공식 guestbook" 코드 들어있는 컨테이너
+          env:
+            - name: GET_HOSTS_FROM
+              value: dns
+              # 코드 내부에서 redis-leader, redis-follower 라는 서비스 이름으로 접속
+          ports:
+            - containerPort: 80
