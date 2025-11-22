@@ -8,3 +8,5 @@ resources:
   - redis-leader-service.yaml
   - redis-follower-deployment.yaml
   - redis-follower-service.yaml
+  - redis-commander-deployment.yaml
+  - redis-commander-service.yaml
