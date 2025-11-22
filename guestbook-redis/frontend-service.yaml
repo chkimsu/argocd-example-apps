@@ -1,0 +1,16 @@
+# guestbook-redis/frontend-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: guestbook-frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  type: LoadBalancer   # 클러스터 환경에 따라 NodePort로 바꿔도 됨
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: guestbook
+    tier: frontend

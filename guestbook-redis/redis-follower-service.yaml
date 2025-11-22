@@ -1,0 +1,16 @@
+# guestbook-redis/redis-follower-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-follower
+  labels:
+    app: redis
+    role: follower
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    app: redis
+    role: follower
+  type: ClusterIP
