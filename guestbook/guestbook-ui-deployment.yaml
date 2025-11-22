@@ -17,5 +17,11 @@ spec:
       containers:
         - image: gcr.io/google-samples/gb-frontend:v5
           name: guestbook-ui
+          env:
+            # Redis 서비스 이름을 명시적으로 주입해 UI가 리더/팔로워를 찾도록 함
+            - name: REDIS_MASTER_SERVICE_HOST
+              value: redis-leader
+            - name: REDIS_SLAVE_SERVICE_HOST
+              value: redis-follower
           ports:
             - containerPort: 80
